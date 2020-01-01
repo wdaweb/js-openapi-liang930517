@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<style>
+
+</style>
+
+<body>
+
+	<h1>Movie</h1>
+	<table width="100%" id="holder" style="border:1px solid #000;">
+
+		<tr>
+			<th>編號</th>
+			<th>圖片</th>
+			<th>名稱</th>
+			<th>地址</th>
+			<th>電話</th>
+			<th>廳數</th>
+		</tr>
+
+	</table>
+
+	<!-- <script>
+	// 	var data;
+	// 	$.getJSON("https://data.ntpc.gov.tw/od/data/api/61C99F42-8A90-4ADC-9C40-BA9E0EA097AA?$format=json")
+	// 		.done(function (movie) {
+	// 			data = movie;
+	// 			console.log(data);
+
+	// 			var holder = document.getElementById("holder"); //father
+	// 			var i;
+	// 			for (i = 0; i < movie.length; i++) {
+	// 				var cover = document.createElement("tr");
+
+	// 				var index = document.createElement("th");
+	// 				index.innerHTML = i + 1;
+	// 				cover.appendChild(index);
+
+	// 				var img = document.createElement("img");
+	// 				img.style.width = '100px';
+	// 				img.style.height = '100px';
+
+	// 				img.src = "Image/" + (i + 1) + ".jpg";
+	// 				cover.appendChild(img);
+
+	// 				var brand = document.createElement("th");
+	// 				brand.innerHTML = movie[i].name;
+	// 				cover.appendChild(brand);
+
+	// 				var address = document.createElement("th");
+	// 				address.innerHTML = movie[i].address;
+	// 				cover.appendChild(address);
+
+	// 				var tel = document.createElement("th");
+	// 				tel.innerHTML = movie[i].tel;
+	// 				cover.appendChild(tel);
+
+	// 				var branch = document.createElement("th");
+	// 				branch.innerHTML = movie[i].number;
+	// 				cover.appendChild(branch);
+
+	// 				holder.appendChild(cover);
+
+	// 			}
+
+	// 		})
+	// 		.fail(function () {
+	// 			console.log("Error....");
+	// 		});
+	// </script> -->
+
+</body>
+
+<script>
+	$.getJSON(
+		"Movie-api.php"
+	).done(function (movie) {
+		data = movie;
+		console.log(data);
+
+		var holder = document.getElementById("holder"); //father
+		var i;
+		for (i = 0; i < movie.length; i++) {
+			var cover = document.createElement("tr");
+
+			var index = document.createElement("th");
+			index.innerHTML = i + 1;
+			cover.appendChild(index);
+
+			var ThImg = document.createElement("th");
+
+			var InnerImg = document.createElement("img");
+			InnerImg.style.width = '100px';
+			InnerImg.style.height = '100px';
+			InnerImg.src = "Image/" + (i + 1) + ".jpg";
+
+			ThImg.appendChild(InnerImg);
+			cover.appendChild(ThImg);
+
+			var brand = document.createElement("th");
+			brand.innerHTML = movie[i].name;
+			cover.appendChild(brand);
+
+			var address = document.createElement("th");
+			address.innerHTML = movie[i].address;
+			cover.appendChild(address);
+
+			var tel = document.createElement("th");
+			tel.innerHTML = movie[i].tel;
+			cover.appendChild(tel);
+
+			var branch = document.createElement("th");
+			branch.innerHTML = movie[i].number;
+			cover.appendChild(branch);
+
+			holder.appendChild(cover);
+		}
+
+	}).fail(function () {
+		alert("this's open-api got fail");
+	});
+</script>
+
+
+</html>
